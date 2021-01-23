@@ -10,6 +10,7 @@ const getAllGistsByUser = (userName) =>
 			.then((results) => {
 				const gistArray = results.data;
 				resolve(gistArray);
+				console.log(gistArray);
 			})
 			.catch((error) => {
 				reject(error);
