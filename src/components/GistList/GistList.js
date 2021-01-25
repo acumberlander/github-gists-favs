@@ -1,30 +1,30 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import GistItem from '../GistItem/GistItem';
+import Grow from '@material-ui/core/Grow';
 import useStyles from './style';
 
-const GistList = ({ gists, setGists, favs, setFavs }) => {
+const GistList = ({ gists, favs, setFavs }) => {
 	const classes = useStyles();
 
-	// useEffect(() => {
-	gists.forEach((gist) => {
-		favs.forEach((fav) => {
-			if (gist.id === fav) {
-				gist.liked = true;
-			} else {
-				gist.liked = false;
-			}
-		});
-		setGists(gists);
+	/** An array with a modified version of the gists global state.
+	 *  Each object has a 'liked' property added to it.
+	 */
+	const likedGists = gists.map((gist) => {
+		return { ...gist, liked: !!favs[gist.id] };
 	});
-	// }, [gists]);
+
+	/** Variable represents each GistItem component being mapped out to the DOM.
+	 * 	Each component is passed its necessary props.
+	 */
+	const gistList = likedGists.map((gist) => (
+		<GistItem gist={gist} key={gist.id} favs={favs} setFavs={setFavs} />
+	));
 
 	return (
 		<div className={classes.gistContainer}>
-			<div className={classes.gistList}>
-				{gists.map((gist) => (
-					<GistItem gist={gist} key={gist.id} favs={favs} setFavs={setFavs} />
-				))}
-			</div>
+			<Grow in={gistList.length} style={{ transitionDuration: 2 }}>
+				<div className={classes.gistList}>{gistList}</div>
+			</Grow>
 		</div>
 	);
 };

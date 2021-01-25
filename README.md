@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# Github Gists Favorites
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an application that will allow the user to
+fetch a Github user's gists and favorite the ones they like.
 
-## Available Scripts
+## Product Requirements:
 
-In the project directory, you can run:
+- [x] The front-end application should communicate with Github to fetch a user’s gists.
+- [x] The front-end application should favorite and locally persist your favorites across users.
+- [x] The front-end application can call the API anonymously or with a defined user.
+- [x] The front-end application can use a component framework to help with your layout.
 
-### `npm start`
+## Engineering requirements:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [x] The favoriting logic in your application should have tests.
+- [x] The favorites should be persisted across searches.
+- [x] Please write up a small explanation of how you would extend or improve your
+      application design if you were building this for production.
+- [x] Please make this code easy to access. A repository would be great.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![image](./src/img/gist-fav-image.png)
 
-### `npm test`
+## Necessary Installs
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Cloning this repository down to your local machine and then running
 
-### `npm run build`
+```
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+should download all of the needed node packages. But just in case that doesn't work, here are all of the packages/libraries used for the project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### React
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### React-Hook-Form
 
-### `npm run eject`
+#### React-Dom
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Jest
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Enzyme
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Axios
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Moment
 
-## Learn More
+#### @material-ui/core
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### @material-ui/icons
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Run this command to install them all at once.
 
-### Code Splitting
+```
+npm install react react-dom react-hook-form jest enzyme axios moment @material-ui/core @material-ui/icons
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Working through the application
 
-### Analyzing the Bundle Size
+- Once you have all of the necessary packages downloaded you'll want to spin up the application by running
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+npm start
+```
 
-### Making a Progressive Web App
+- When the app loads up it should like the following:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![image](./src/img/gists-empty.png)
 
-### Advanced Configuration
+- Once the app is spun up, if you click on the 'Search Gists' button without entering a GitHub username, a list of gists from random users will render like so:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![image](./src/img/gist-fav-image.png)
 
-### Deployment
+- If you type a username into the input and click the 'Search Gists' button, then you will be shown all the public gists available for that user.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![image](./src/img/user-gists.png)
 
-### `npm run build` fails to minify
+- If you click on the heart icon on one of the gists it will change color to indicate that you have 'favorited' or 'liked' the gist.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![image](./src/img/liked-gist.png)
+
+- If you search for other user gists and like the ones that display the functionality will work the same. Also, if you go back to the user you were on previously you'll notice that your previously liked/favorited gists are still marked as such.
+
+![image](./src/img/other-user-gist.png)
+
+- If you click on the 'Go to Gist' button, you'll be taken to the gist on that user's GitHub account.
+
+## Improvements for Production
+
+If this were a feature that needed to be added to production, I probably would have taken more time on trying to map out additional UI features. For example, I think it would have been cool if instead of the user's gists being the only thing to populate on search, a user profile could have been provided as a side drawer. That side drawer could have other options that would allow the user to see their repos, followers, following, etc. Another possible design/feature addition would be to allow the user to see all of their files for each gist displayed within the app.
+
+## That's all Folks!

@@ -11,7 +11,11 @@ const SearchComponent = ({ setGists }) => {
 
 	const { register, handleSubmit } = useForm();
 
+	/** Function that invokes the getAllGistsByUser function by passing the username to it
+	 *  and then storing the results of that api call to the global state.
+	 */
 	const displayGists = (username) => {
+		setGists([]); // sets gists state to be empty so animation effect works on every search
 		getAllGistsByUser(username).then((data) => {
 			setGists(data);
 		});
@@ -34,7 +38,12 @@ const SearchComponent = ({ setGists }) => {
 						name="username"
 						inputRef={register}
 					/>
-					<Button variant="contained" color="primary" type="submit">
+					<Button
+						className={classes.button}
+						variant="contained"
+						color="primary"
+						type="submit"
+					>
 						Search Gists
 					</Button>
 				</form>
