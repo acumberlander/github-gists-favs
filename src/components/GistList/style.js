@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
 	gistList: {
 		display: 'flex',
 		flexWrap: 'wrap',
+		justifyContent: 'center',
 		padding: 20,
 	},
 }));

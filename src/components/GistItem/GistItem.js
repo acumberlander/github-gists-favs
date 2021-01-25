@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
@@ -12,21 +12,18 @@ import useStyles from './styles';
 
 const GistItem = ({ gist, setFavs, favs }) => {
 	const classes = useStyles();
-	const [liked, setLiked] = useState(gist.liked);
 
+	/** Function that toggles the favs global state. It does this by creating a
+	 *  modified version of the favs global state by adding the gistId (parameter)
+	 *  and the corresponding boolean as a key/value pair. That modified version is
+	 *  then set as the new favs global state.
+	 */
 	const toggleLikeButton = (gistId) => {
-		setLiked(!liked);
-		if (liked) {
-			const updatedFavs = [...favs.filter((fav) => fav !== gistId)];
-			setFavs(updatedFavs);
-			gist.liked = false;
-		} else {
-			setFavs([...favs, gistId]);
-			gist.liked = true;
-		}
+		const updatedFavs = { ...favs, [gistId]: favs[gistId] ? false : true };
+		setFavs(updatedFavs);
 	};
 
-	const heartColor = liked ? 'error' : 'disabled';
+	const heartColor = gist.liked ? 'error' : 'disabled';
 
 	return (
 		<Card className={classes.root}>
@@ -43,12 +40,9 @@ const GistItem = ({ gist, setFavs, favs }) => {
 				<Typography gutterBottom color="textSecondary">
 					{moment(gist && gist.updated_at).format('LL')}
 				</Typography>
-				<Typography variant="h6" color="textPrimary">
-					File Count: {Object.values(gist && gist.files).length}
-				</Typography>
 			</CardContent>
 
-			<CardActions disableSpacing>
+			<CardActions className={classes.footer} disableSpacing>
 				<IconButton
 					aria-label="add to favorites"
 					onClick={() => toggleLikeButton(gist.id)}

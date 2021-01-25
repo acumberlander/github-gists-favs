@@ -3,10 +3,15 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		maxWidth: 345,
-		minWidth: 225,
+		width: 235,
+		minHeight: 450,
 		margin: 20,
+		position: 'relative',
 		textAlign: 'left',
+	},
+	footer: {
+		position: 'absolute',
+		bottom: 0,
 	},
 	media: {
 		height: 0,

@@ -5,9 +5,8 @@ const useStyles = makeStyles((theme) => ({
 		padding: 30,
 		textAlign: 'center',
 	},
-	form: {
-		display: 'flex',
-		alignItems: 'center',
+	button: {
+		marginTop: 10,
 	},
 	textField: {
 		width: '350px',

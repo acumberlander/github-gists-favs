@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
 import SearchComponent from '../components/SearchComponent/SearchComponent';
 import GistList from '../components/GistList/GistList';
@@ -7,12 +7,8 @@ import './styles.js';
 
 function App() {
 	const [gists, setGists] = useState([]);
-	const [favs, setFavs] = useState([]);
+	const [favs, setFavs] = useState({});
 	const classes = useStyles();
-
-	useEffect(() => {
-		console.log(favs);
-	}, [favs]);
 
 	return (
 		<Container className={classes.root}>
